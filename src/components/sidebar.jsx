@@ -12,6 +12,7 @@ import { RiUser3Fill } from 'react-icons/ri';
 
 import Logo from '../assets/Assiduus-Logo.png';
 import Navbar from './navbar/navbar';
+import Chart from './chart/chart';
 
 const Wrapper = styled.div`
   display: flex;
@@ -87,6 +88,7 @@ const Sidebar = () => {
       </LeftWrapper>
       <RightWrapper>
         <Navbar />
+        <Chart />
       </RightWrapper>
     </Wrapper>
   );

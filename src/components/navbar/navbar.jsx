@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdOutlineSearch, MdNotifications } from 'react-icons/md';
 import Avatar from '../../assets/avatar.png';
@@ -13,6 +13,7 @@ const UpperWrapper = styled.div`
 
 const InnerWrapper = styled.div`
   width: 95%;
+  /* width: 40%; */
   display: flex;
   align-items: center;
   justify-content: end;
@@ -28,7 +29,6 @@ const InnerWrapper = styled.div`
     border-radius: 7px;
     padding-left: 15px;
     margin-right: 20px;
-    /* width: 30%; */
   }
 
   .search {
@@ -40,19 +40,32 @@ const InnerWrapper = styled.div`
 `;
 
 const Navbar = () => {
+  const [notificationCount, setNotificationCount] = useState(0);
+
   return (
     <UpperWrapper>
       <InnerWrapper>
         <div className="search-wrapper">
-          <MdOutlineSearch style={{ paddingTop: '10px' }} size={20} />
-          <input
-            className="search"
-            id="outlined-basic"
-            //   variant="outlined"
-            label="Search"
-          />
+          <MdOutlineSearch style={{ paddingTop: '10px' }} size={25} />
+          <input className="search" id="outlined-basic" label="Search" />
         </div>
-        <MdNotifications size={20} />
+        <div style={{ position: 'relative' }}>
+          <MdNotifications size={25} />
+          {notificationCount == 0 && (
+            <div
+              style={{
+                position: 'absolute',
+                top: 0,
+                right: '2px',
+                backgroundColor: 'green',
+                border: '1px solid white',
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+              }}
+            ></div>
+          )}
+        </div>
         <img src={Avatar} alt="" width={35} />
       </InnerWrapper>
     </UpperWrapper>

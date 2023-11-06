@@ -23,16 +23,14 @@ const LeftWrapper = styled.div`
   width: 13rem;
   /* width: fit-content; */
   height: 100vh;
-  box-shadow: 14px -2px 47px -24px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 `;
 const LogoWrapper = styled.div`
   padding: 20px;
 `;
 const ListGroup = styled.ul`
   list-style: none;
-  /* padding: 20px 0; */
   padding: 0;
-  /* margin: 0 auto; */
 
   .hover {
     :hover {
@@ -45,8 +43,6 @@ const ListItem = styled.li`
   display: flex;
   padding: 10px;
   padding-left: 30px;
-
-  /* width: fit-content; */
 `;
 
 const ListIcon = styled.div``;

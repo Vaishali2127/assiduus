@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MdOutlineSearch } from 'react-icons/md';
+import { MdOutlineSearch, MdNotifications } from 'react-icons/md';
+import Avatar from '../../assets/avatar.png';
 
 const UpperWrapper = styled.div`
   background-color: #fff;
@@ -8,11 +9,18 @@ const UpperWrapper = styled.div`
   width: 100%;
   justify-content: end;
   padding: 15px 0;
+  align-items: center;
+
+  img {
+    border-radius: 50%;
+    margin: 0 20px;
+  }
 
   .search-wrapper {
     background-color: #f6f6f8;
     border-radius: 7px;
     padding-left: 15px;
+    margin-right: 20px;
   }
 
   .search {
@@ -35,6 +43,8 @@ const Navbar = () => {
           label="Search"
         />
       </div>
+      <MdNotifications size={20} />
+      <img src={Avatar} alt="" width={35} />
     </UpperWrapper>
   );
 };

@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 const LeftWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 13rem;
+  width: 15rem;
   /* width: fit-content; */
   height: 100vh;
   background-color: #fff;

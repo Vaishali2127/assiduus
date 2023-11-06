@@ -7,12 +7,19 @@ const UpperWrapper = styled.div`
   background-color: #fff;
   display: flex;
   width: 100%;
-  justify-content: end;
+  /* justify-content: end; */
   padding: 15px 0;
+`;
+
+const InnerWrapper = styled.div`
+  width: 95%;
+  display: flex;
   align-items: center;
+  justify-content: end;
 
   img {
     border-radius: 50%;
+    height: 80%;
     margin: 0 20px;
   }
 
@@ -21,6 +28,7 @@ const UpperWrapper = styled.div`
     border-radius: 7px;
     padding-left: 15px;
     margin-right: 20px;
+    /* width: 30%; */
   }
 
   .search {
@@ -34,17 +42,19 @@ const UpperWrapper = styled.div`
 const Navbar = () => {
   return (
     <UpperWrapper>
-      <div className="search-wrapper">
-        <MdOutlineSearch style={{ paddingTop: '10px' }} size={20} />
-        <input
-          className="search"
-          id="outlined-basic"
-          //   variant="outlined"
-          label="Search"
-        />
-      </div>
-      <MdNotifications size={20} />
-      <img src={Avatar} alt="" width={35} />
+      <InnerWrapper>
+        <div className="search-wrapper">
+          <MdOutlineSearch style={{ paddingTop: '10px' }} size={20} />
+          <input
+            className="search"
+            id="outlined-basic"
+            //   variant="outlined"
+            label="Search"
+          />
+        </div>
+        <MdNotifications size={20} />
+        <img src={Avatar} alt="" width={35} />
+      </InnerWrapper>
     </UpperWrapper>
   );
 };

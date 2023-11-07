@@ -1,7 +1,12 @@
 import React from 'react';
+import { CardWrapper } from './styles';
 
 const Watchlist = () => {
-  return <div>Watchlist</div>;
+  return (
+    <CardWrapper>
+      <p>Account watchlist</p>
+    </CardWrapper>
+  );
 };
 
 export default Watchlist;

@@ -1,7 +1,12 @@
-import React from 'react';
+import * as React from 'react';
+import { CardWrapper } from './styles';
 
 const Invoices = () => {
-  return <div>Invoices</div>;
+  return (
+    <CardWrapper>
+      <p>Invoices owned by you</p>
+    </CardWrapper>
+  );
 };
 
 export default Invoices;

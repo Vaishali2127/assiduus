@@ -10,6 +10,16 @@ export const Wrapper = styled.div`
 export const CardWrapper = styled.div`
   background-color: #f11;
   border-radius: 15px;
+  /* display: flex; */
+  /* justify-content: space-between; */
 `;
+
+export const UpperWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  align-items: center;
+`;
+
 // export const CardWrapper = styled.div``;
 // export const CardWrapper = styled.div``;

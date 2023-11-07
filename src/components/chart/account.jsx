@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import { CardWrapper, UpperWrapper } from './styles';
+import { Divider } from '@mui/material';
 
 const Account = () => {
   const [month, setMonth] = React.useState('');
@@ -23,9 +24,9 @@ const Account = () => {
       <UpperWrapper>
         <p>Checking account</p>
         <Box sx={{ minWidth: 120, display: 'flex' }}>
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <FormControl sx={{ mt: 1, mb: 1, minWidth: 120 }}>
             <Select
-              style={{ height: '30px' }}
+              style={{ height: '30px', padding: '20px 0px' }}
               value={manage}
               onChange={handleChangeManage}
               displayEmpty
@@ -34,9 +35,9 @@ const Account = () => {
             </Select>
           </FormControl>
 
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <FormControl sx={{ mt: 1, mb: 1, minWidth: 120 }}>
             <Select
-              style={{ height: '30px' }}
+              style={{ height: '30px', padding: '20px 0px' }}
               value={month}
               onChange={handleChangeMonth}
               displayEmpty
@@ -58,6 +59,8 @@ const Account = () => {
           </FormControl>
         </Box>
       </UpperWrapper>
+      <Divider />
+      hi
     </CardWrapper>
   );
 };

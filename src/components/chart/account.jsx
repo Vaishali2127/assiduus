@@ -1,111 +1,63 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
-import Box from '@mui/material/Box';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 
-import { CardWrapper, UpperWrapper } from './styles';
-import { Divider } from '@mui/material';
-
-const Account = () => {
-  const data = [0, 20, 70, 40, 50, 50, 70, 80];
-  const width = 400;
-  const height = 200;
-
-  const svgRef = useRef();
+const Account = ({ data }) => {
+  const svgRef = useRef(null);
 
   useEffect(() => {
-    // D3 code to create the line chart
-    const svg = d3.select(svgRef.current);
-
-    // Define your data scales
-    const xScale = d3
-      .scaleLinear()
-      .domain([0, data.length - 1])
-      .range([0, width]);
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, d3.max(data)])
-      .range([height, 0]);
+    if (data.length === 0) return; // Check if data is empty
 
     const line = d3
       .line()
-      .x((d, i) => xScale(i))
-      .y((d) => yScale(d));
+      .x((d) => x(d.date))
+      .y((d) => y(d.value))
+      .curve(d3.curveMonotoneX);
 
-    svg
-      .append('path')
+    const svg = d3.select(svgRef.current);
+    svg.selectAll('*').remove(); // Clear svg content before redrawing
+
+    const width = 400;
+    const height = 150;
+    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    const xScale = d3
+      .scaleTime()
+      .domain(d3.extent(data, (d) => d.date))
+      .range([0, innerWidth]);
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([0, d3.max(data, (d) => d.value)])
+      .range([innerHeight, 0]);
+
+    const lineGenerator = d3
+      .line()
+      .x((d) => xScale(d.date))
+      .y((d) => yScale(d.value))
+      .curve(d3.curveMonotoneX); // This will make the line smooth
+
+    const g = svg
+      .append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    g.append('path')
       .datum(data)
       .attr('fill', 'none')
-      .attr('stroke', 'blue') // Customize the line color
-      .attr('stroke-width', 2) // Customize the line width
-      .attr('d', line);
+      .attr('stroke', 'steelblue')
+      .attr('stroke-width', 2)
+      .attr('d', lineGenerator);
 
-    // Add x-axis
-    svg
-      .append('g')
-      .attr('transform', `translate(0, ${height})`)
-      .call(d3.axisBottom(xScale));
+    g.append('g').call(d3.axisLeft(yScale)).attr('transform', `translate(0,0)`);
 
-    // Add y-axis
-    svg.append('g').call(d3.axisLeft(yScale));
-  }, [data, width, height]);
+    g.append('g')
+      .call(d3.axisBottom(xScale))
+      .attr('transform', `translate(0,${innerHeight})`);
+  }, [data]); // Redraw chart if data changes
 
-  const [month, setMonth] = React.useState('');
-  const [manage, setManage] = React.useState('');
-
-  const handleChangeMonth = (event) => {
-    setMonth(event.target.value);
-  };
-  const handleChangeManage = (event) => {
-    setManage(event.target.value);
-  };
-
-  return (
-    <CardWrapper>
-      <UpperWrapper>
-        <p>Checking account</p>
-        <Box sx={{ minWidth: 120, display: 'flex' }}>
-          <FormControl sx={{ mt: 1, mb: 1, minWidth: 120 }}>
-            <Select
-              style={{ height: '30px', padding: '20px 0px' }}
-              value={manage}
-              onChange={handleChangeManage}
-              displayEmpty
-            >
-              <MenuItem value="">Manage</MenuItem>
-            </Select>
-          </FormControl>
-
-          <FormControl sx={{ mt: 1, mb: 1, minWidth: 120 }}>
-            <Select
-              style={{ height: '30px', padding: '20px 0px' }}
-              value={month}
-              onChange={handleChangeMonth}
-              displayEmpty
-            >
-              {/* <MenuItem value="">Month</MenuItem> */}
-              <MenuItem value="">January</MenuItem>
-              <MenuItem value="February">February</MenuItem>
-              <MenuItem value="March">March</MenuItem>
-              <MenuItem value="April">April</MenuItem>
-              <MenuItem value="May">May</MenuItem>
-              <MenuItem value="June">June</MenuItem>
-              <MenuItem value="July">July</MenuItem>
-              <MenuItem value="August">August</MenuItem>
-              <MenuItem value="September">September</MenuItem>
-              <MenuItem value="October">October</MenuItem>
-              <MenuItem value="November">November</MenuItem>
-              <MenuItem value="December">December</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-      </UpperWrapper>
-      <Divider />
-      <svg ref={svgRef} width={width} height={height}></svg>
-    </CardWrapper>
-  );
+  return <svg ref={svgRef} width={400} height={150}></svg>;
 };
 
 export default Account;

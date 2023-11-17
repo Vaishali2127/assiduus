@@ -5,6 +5,11 @@ export const Wrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   padding: 30px;
+
+  p,
+  label {
+    font-weight: 600;
+  }
 `;
 
 export const CardWrapper = styled.div`

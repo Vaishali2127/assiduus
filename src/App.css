@@ -4,6 +4,13 @@
   background: #f6f6f8;
 }
 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;

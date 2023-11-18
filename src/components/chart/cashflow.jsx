@@ -1,19 +1,7 @@
-// import React from 'react';
-// import { CardWrapper } from './styles';
-
-// const Cashflow = () => {
-//   return (
-//     <CardWrapper>
-//       <p>Total cash flow</p>
-//     </CardWrapper>
-//   );
-// };
-
-// export default Cashflow;
-
 import React, { useRef, useEffect } from 'react';
 import * as d3 from 'd3';
 import { CardWrapper } from './styles';
+import { Divider } from '@mui/material';
 
 const CashFlow = ({ data }) => {
   const svgRef = useRef();
@@ -59,6 +47,7 @@ const CashFlow = ({ data }) => {
     // Add the x-axis labels
     svg
       .append('g')
+      .attr('class', 'x axis')
       .attr('transform', `translate(0,${height})`)
       .call(d3.axisBottom(xScale));
   }, [
@@ -73,6 +62,52 @@ const CashFlow = ({ data }) => {
 
   return (
     <CardWrapper>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '15px',
+        }}
+      >
+        <p style={{ margin: '0' }}>Total cash flow</p>
+        <div style={{ display: 'flex' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginRight: '10px',
+            }}
+          >
+            <button
+              style={{
+                // color: '#ffffff00',
+                backgroundColor: '#218f1f',
+                border: 'none',
+                borderRadius: '5px',
+                padding: '10px',
+                fontWeight: '600',
+                margin: '7px',
+              }}
+            ></button>
+            In
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <button
+              style={{
+                // color: '#ffffff00',
+                backgroundColor: '#47B646',
+                border: 'none',
+                borderRadius: '5px',
+                padding: '10px',
+                fontWeight: '600',
+                margin: '7px',
+              }}
+            ></button>
+            Out
+          </div>
+        </div>
+      </div>
+      <Divider />
       <svg ref={svgRef}></svg>
     </CardWrapper>
   );

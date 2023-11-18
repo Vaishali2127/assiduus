@@ -47,6 +47,7 @@ export default function Invoices({ data }) {
     // Add x-axis
     svg
       .append('g')
+      .attr('class', 'x axis')
       .attr('transform', `translate(0,${height})`)
       .call(d3.axisBottom(xScale));
 
@@ -63,7 +64,7 @@ export default function Invoices({ data }) {
           padding: '15px',
         }}
       >
-        <p style={{ margin: '0' }}>Invoices Owned by you</p>
+        <p style={{ margin: '0' }}>Invoices owned by you</p>
         <button
           style={{
             color: '#47B646',

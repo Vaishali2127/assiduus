@@ -39,8 +39,9 @@ export default function Invoices({ data }) {
       .attr('class', 'bar')
       .attr('x', (d) => xScale(d.date))
       .attr('y', (d) => yScale(d.value))
-      .attr('width', xScale.bandwidth())
+      .attr('width', xScale.bandwidth() - 50)
       .attr('height', (d) => height - yScale(d.value))
+      .attr('margin', (d) => xScale.align())
       .attr('fill', '#47B646');
 
     // Add x-axis

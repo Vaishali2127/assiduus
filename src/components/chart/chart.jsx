@@ -27,11 +27,20 @@ const Chart = () => {
     { date: 'Jan 25-31', value: 40 },
     { date: 'Future', value: 30 },
   ];
+
+  const cashData = [
+    { name: 'August', value: 10 },
+    { name: 'September', value: 20 },
+    { name: 'October', value: 30 },
+    { name: 'November', value: 25 },
+    { name: 'December', value: 15 },
+    { name: 'January', value: 18 },
+  ];
   return (
     <Wrapper>
       <Account data={accountData} />
       <Invoices data={invoicesData} />
-      <Cashflow />
+      <Cashflow data={cashData} />
       <Watchlist />
     </Wrapper>
   );
